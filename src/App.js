@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import pokemon from './pokemon.json'
+
+const PokemonRow = ({pokemon}) => (
+  <tr>
+    <td>{pokemon.name['english']}</td>
+    <td>{pokemon.type.join('/')}</td>
+  </tr>
+);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{
+      width: 800,
+      paddingTop: "1rem",
+      margin: "auto"
+    }}>
+      <h1 className='title'>
+        Pokemon Search
+      </h1>
+      <table width="100%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pokemon.slice(0, 50).map((pokemon) => (
+          // <tr key={pokemon.id}>
+          //   <td>{pokemon.name['english']}</td>
+          //   <td>{pokemon.type.join('/')}</td>
+          // </tr>
+            <PokemonRow key={pokemon.id} pokemon={pokemon} />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
